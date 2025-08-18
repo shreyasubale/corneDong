@@ -9,51 +9,41 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-        keymap {
-                compatible = "zmk,keymap";
 
-                default_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-// | CAPS |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT |
-//                    | ALT | SPC | LWR |   | FN  | ENT  | ESC |
-                        display-name = "Base";
-                        bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp CAPS  &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHIFT
-                  &kp LALT &kp SPACE &mo 1   &mo 2 &kp RET &kp ESC
-                        >;
-                };
-                lower_layer {
-// -----------------------------------------------------------------------------------------
-// |  `   |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | DEL  |
-// |      |     |     |     |  F  |     |   | LFT | DWN |  UP | RGT |     |      |
-// | CTRL |  Z  |  X  |  C  |  V  |     |   |     |     |     |     |     | SHFT |
-//                    | GUI | SPC |     |   |     | ENT |     |
-                        display-name = "Numbers";
-                        bindings = <
-   &kp GRAVE &kp N1 &kp N2 &kp N3 &kp N4 &kp N5    &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp DEL
-   &trans    &trans &trans &trans &kp F  &trans    &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LCTRL &kp Z  &kp X  &kp C  &kp V  &trans    &trans   &trans   &trans &trans    &trans &kp RSHIFT
-                      &kp LGUI &kp SPACE &trans    &trans   &kp RET  &trans
-                        >;
-                };
+    keymap {
+        compatible = "zmk,keymap";
 
-                   FN_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB | F1  | F2  | F3  | F4  | F5  |   | F6  | F7  | F8  | F9  | F10 | F11  |
-// | SHFT |     |     |     |  F  |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | CTRL |  Z  |  X  |  C  |  V  |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI | SPC |     |   |     | ENT | ALT |
-                        display-name = "FN Layer";
-                        bindings = <
-   &kp TAB   &kp F1   &kp F2 &kp F3   &kp F4    &kp F5      &kp F6    &kp F7    &kp F7    &kp F8   &kp F9   &kp F11
-   &kp LSHFT &trans   &trans &trans   &kp F     &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LCTRL &kp Z    &kp X  &kp C    &kp V     &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &kp SPACE &trans      &trans    &kp RET   &kp RALT
-                        >;
-                };
-        };
+    Base {
+        label = "Base";
+        display-name = "Base";  
+        bindings = <
+                &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
+                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
+        >;
+    };
+
+    Lower {
+        label = "Lower";
+        display-name = "Lower";  
+        bindings = <
+               &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
+   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
+   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
+                                    &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT 
+        >;
+    };
+
+    Upper {
+        label = "Upper";
+        display-name = "Upper";  
+        bindings = <
+                &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
+   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
+   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
+                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+        >;
+    };
+  };
 };
